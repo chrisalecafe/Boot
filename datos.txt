@@ -1,0 +1,22 @@
+producto 
+
+
+
+tipo: todo lleva pequeño, mediano y grande
+
+dije pequeño
+dije mediano 
+dije grande
+pulso pequeño 
+pulso mediano 
+pulso grande
+anillos
+collares
+aretes
+argollas 
+
+
+COSTO 
+PRECIO UNITARIO 
+CANTIDAD 
+FOTO
