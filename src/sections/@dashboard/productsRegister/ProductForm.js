@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+
+import React, { useEffect, useState } from 'react';
+import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
 import { useFormik, Form, FormikProvider } from 'formik';
 // material
 import {
@@ -19,7 +20,9 @@ import {
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // component
+import { useDispatch, useSelector } from 'react-redux';
 import Iconify from '../../../components/Iconify';
+import { agregarOModificarProducto, productoSeleccionado } from '../../../store/store';
 
 // ----------------------------------------------------------------------
 
@@ -27,6 +30,17 @@ export default function ProductForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [age, setAge] = useState('');
+
+  const { codigo } = useParams();
+  const producto = useSelector((state) => state.producto);
+  const dispatch = useDispatch();
+  // const [values, setValues] = useState({
+  //     codigo: 0,
+  //     nombre: '',
+  //     cantidad: '',
+  //     precio: '',
+  //     categoria: 1
+  // });
 
   const handleChange = (event) => {
     console.log('Contr', event.target.value);
@@ -55,9 +69,12 @@ export default function ProductForm() {
     },
     validationSchema: FormSchema,
     onSubmit: (values) => {
-      alert('enviado');
+      // alert('enviado');
       console.log('insert', JSON.stringify(values, null, 2));
-
+      const payload = {
+        ...values
+      };
+      dispatch(agregarOModificarProducto(payload));
       // navigate('/dashboard', { replace: true });
     }
   });
